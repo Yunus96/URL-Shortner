@@ -14,7 +14,7 @@ app.set('view engine', 'ejs')
 //makes it possible to use url params
 app.use(express.urlencoded({ extended: false }))
 
-//
+//Home Route
 app.get('/',async (req, res)=>{
     const shortUrls = await ShortUrls.find()
     res.render('index', { shortUrls : shortUrls})
