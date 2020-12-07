@@ -16,8 +16,8 @@ app.use(express.urlencoded({ extended: false }))
 
 //
 app.get('/',async (req, res)=>{
-    await ShortUrls.find()
-    res.render('index', {ShortUrls : ShortUrls})
+    const shortUrls = await ShortUrls.find()
+    res.render('index', { shortUrls : shortUrls})
 })
 
 
@@ -25,6 +25,17 @@ app.post('/shortUrls',async (req, res)=>{
     await ShortUrls.create({ full: req.body.fullUrl })
     res.redirect('/')
 })
+
+app.get("/:shortUrl",async (req, res) => {
+    const shortUrl = await ShortUrl.findOne({ short : req.params.shortUrl })
+    //Checking for valid data
+    if (shortUrl == null) return res.sendStatus(404);
+
+    shortUrl.clicks++
+    shortUrl.save()
+
+    res.redirect(shortUrl.full)
+} )
 
 app.listen(process.env.PORT || 5001, ()=>{
     console.log("start")
