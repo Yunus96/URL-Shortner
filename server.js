@@ -1,10 +1,9 @@
 const express = require('express');
-const mongoose = require('mongoose')
-//importing db models
-const shortUrls = require('./models/shortUrl')
+const mongoose = require('mongoose');
+const shortUrls = require('./models/shortUrl');
 const app = express();
 
-mongoose.connect('mongodb:localhost/urlShortener',{
+mongoose.connect('mongodb://localhost/urlShortener',{
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -16,9 +15,11 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 
 //
-app.get('/', (req, res)=>{
-    res.render('index')
+app.get('/',async (req, res)=>{
+    await shortUrls.find()
+    res.render('index', {shortUrls : shortUrl})
 })
+
 
 app.post('/shortUrls',async (req, res)=>{
     await shortUrls.create({ full: req.body.fullUrl })
