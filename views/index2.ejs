@@ -65,7 +65,7 @@
     <form action="/shortUrls" method="POST" class="my-4 form-inline">
         <label for="fullUrl" class="sr-only">Url</label>
         <input class="form-control col-10 mr-2" required placeholder="Make your links shorter" type="url" name="fullUrl">
-        <button class="btn btn-success" type="submit">Shrink</button>
+        <button class="btn btn-success" style="width: 90px;" type="submit">Shrink</button>
     </form>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <strong>Holy guacamole!</strong> You should check in on some of those fields below.
@@ -74,7 +74,7 @@
       </button>
     </div>
     <div class="alert col-12 alert-light" role="alert">
-      <a href="#" class="alert-link"><%= shortUrlS.full %></a> <a href="#" class="alert-link"><%= shortUrlS.short %></a><p style="display: inline;margin-left: 10px;">Copy</p>
+      <a href="#" class="alert-link"><%= shortUrls.full %></a> <a href="#" class="alert-link"><%= shortUrls.short %></a><p style="display: inline;margin-left: 10px;">Copy</p>
     </div>
     <!--<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
     <p class="lead">
