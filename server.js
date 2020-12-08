@@ -10,14 +10,18 @@ mongoose.connect('mongodb://localhost/urlShortener',{
 
 //sets template engine
 app.set('view engine', 'ejs')
+
+//tells to use static files
+app.use(express.static('public'))
  
 //makes it possible to use url params
 app.use(express.urlencoded({ extended: false }))
 
 //Home Route
 app.get('/',async (req, res)=>{
-    const shortUrls = await ShortUrls.find()
-    res.render('index', { shortUrls : shortUrls})
+    //const shortUrls = await ShortUrls.find()
+    //,{ shortUrls : shortUrls}
+    res.render('index2')
 })
 
 
