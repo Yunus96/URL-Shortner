@@ -19,9 +19,9 @@ app.use(express.urlencoded({ extended: false }))
 
 //Home Route
 app.get('/',async (req, res)=>{
-    //const shortUrls = await ShortUrls.find()
-    //,{ shortUrls : shortUrls}
-    res.render('index2')
+    const shortUrls = await ShortUrls.find()
+    
+    res.render('index2',{ shortUrls : shortUrls})
 })
 
 
