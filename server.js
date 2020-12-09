@@ -23,8 +23,8 @@ app.use(express.urlencoded({ extended: false }))
 
 //Home Route
 app.get('/',async (req, res)=>{
-    const shortUrls = await ShortUrls.find()
-    
+    const shortUrls = await ShortUrls.find({}).sort({_id:-1}).limit(1)
+    console.log({ShortUrls : shortUrls })
     res.render('index2',{ shortUrls : shortUrls})
 })
 
