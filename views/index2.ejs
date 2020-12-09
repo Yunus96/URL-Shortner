@@ -45,6 +45,7 @@
     <!-- Custom styles for this template -->
     <link href="../css/style.css" rel="stylesheet">
   </head>
+
   <body class="text-center">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="masthead mb-auto">
@@ -61,14 +62,21 @@
   <main role="main" class="inner cover">
     <h1 class="cover-heading">Shrink Your URL</h1>
     <p class="lead">Chota URL is the industry-leading link management platform to brand, track and share short URLs using a custom domain name.</p>
+    
     <!--This is Form-->
     <form action="/shortUrls" method="POST" class="my-4 form-inline">
         <label for="fullUrl" class="sr-only">Url</label>
+        
         <input class="form-control col-10 mr-2" required placeholder="Make your links shorter" type="url" name="fullUrl">
-        <button class="btn btn-success" style="width: 90px;" type="submit">Shrink</button>
+        
+        <button class="btn btn-success" style="width: 90px;" type="submit" id="shrink" onclick="document.getElementById('hide').classList.remove('invisible')">Shrink</button>
     </form>
-    <div class="alert col-12 alert-light" role="alert">
-      <a href="#" class="alert-link"><%= shortUrls[0].full %></a> <a href="#" class="alert-link"><%= shortUrls[0].short %></a><p style="display: inline;margin-left: 10px;">Copy</p>
+
+
+    <div class="invisible alert col-12 alert-light" role="alert" style="padding: 5px 0 5px 0;" id='hide'>
+      <!--<a href="<%= shortUrls[0].full %>" class="alert-link" style="text-align: left;"><%= shortUrls[0].full %></a> -->
+      <a href="<%= shortUrls[0].short %>" id="input" class="alert-link">https://ab.com/<%= shortUrls[0].short %></a>
+      <button type="button" class="btn btn-dark" style="display: inline;margin:0 0 0 20px;" id="copy">Copy</button>
     </div>
     <!--<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
     <p class="lead">
@@ -82,5 +90,20 @@
     </div>
   </footer>
 </div>
+
+<script>
+  function showup(){
+  document.getElementById("hide").style.display = "inline";
+  }
+  document.getElementById("#shrink").addEventListener("click", showup)
+
+  function copy() {
+  var copyText = document.querySelector("#input");
+  copyText.select();
+  document.execCommand("copy");
+}
+document.querySelector("#copy").addEventListener("click", copy);
+
+</script>
 </body>
 </html>
