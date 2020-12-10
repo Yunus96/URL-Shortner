@@ -74,16 +74,12 @@
     </div>
 
 
-
     <div class="invisible alert col-12 alert-light" role="alert" style="padding: 5px 0 5px 0;" id='hide'>
-      <!--<a href="<%= shortUrls[0].full %>" class="alert-link" style="text-align: left;"><%= shortUrls[0].full %></a> -->
-      <a href="<%= shortUrls[0].short %>" id="input" class="alert-link">https://ab.com/<%= shortUrls[0].short %></a>
-      <button type="button" class="btn btn-dark" style="display: inline;margin:0 0 0 20px;" id="copy">Copy</button>
+    
+      <a href="<%= shortUrls[0].short %>" id="urlInput" class="alert-link">https://ab.com/<%= shortUrls[0].short %></a>
+      <button type="button" class="btn btn-dark" style="display: inline;margin:0 0 0 20px;" id="copy" onclick='copyFunc()'> Copy </button>
+    
     </div>
-    <!--<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-    <p class="lead">
-      <a href="#" class="btn btn-lg btn-secondary">Shorten url</a>
-    </p>-->
   </main>
 
   <footer class="mastfoot mt-auto">
@@ -109,6 +105,12 @@
     }
   }
 
+  function copyFunc() {
+  var copyText = document.getElementById("urlInput").value;
+  //copyText.select();
+  //copyText.setSelectionRange(0, 100)
+  document.execCommand("copy");
+}
 
 
 
