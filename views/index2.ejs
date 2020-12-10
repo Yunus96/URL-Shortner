@@ -69,7 +69,7 @@
         
         <input class="form-control col-10 mr-2" required placeholder="Make your links shorter" type="url" name="fullUrl">
         
-        <button class="btn btn-success" style="width: 90px;" type="submit" id="shrink" onclick="document.getElementById('hide').classList.remove('invisible')">Shrink</button>
+        <button class="btn btn-success" style="width: 90px;" type="submit" id="getShort" <!--onclick="document.getElementById('hide').classList.remove('invisible')"--></button>>Shrink</button>
     </form>
 
 
@@ -92,6 +92,21 @@
 </div>
 
 <script>
+  function makeReq (){
+    const fullUrl = document.getElementById('input').value;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://api.shrtco.de/v2/shorten?url=`${fullurl}`', true)
+    xhr.send();
+    xhr.onload = ()=>{
+      const json = JSON.parse(xhr.responseText);
+      document.getElementById('hide').innerHTML = JSON.stringify(json)
+    }
+  }
+
+
+
+
   function showup(){
   document.getElementById("hide").style.display = "inline";
   }
