@@ -64,13 +64,15 @@
     <p class="lead">Chota URL is the industry-leading link management platform to brand, track and share short URLs using a custom domain name.</p>
     
     <!--This is Form-->
-    <form action="/shortUrls" method="POST" class="my-4 form-inline">
+    <div  class="my-4 form-inline">
         <label for="fullUrl" class="sr-only">Url</label>
         
-        <input class="form-control col-10 mr-2" required placeholder="Make your links shorter" type="url" name="fullUrl">
+        <input class="form-control col-10 mr-2" required placeholder="Make your links shorter" type="url" id='fullurl' name="fullUrl">
         
-        <button class="btn btn-success" style="width: 90px;" type="submit" id="getShort" <!--onclick="document.getElementById('hide').classList.remove('invisible')"--></button>>Shrink</button>
-    </form>
+        <button class="btn btn-success" style="width: 90px;" type="submit" id="getShort" onclick="makeReq()">Shrink</button>
+    <!--onclick="document.getElementById('hide').classList.remove('invisible')"-->
+    </div>
+
 
 
     <div class="invisible alert col-12 alert-light" role="alert" style="padding: 5px 0 5px 0;" id='hide'>
@@ -93,14 +95,17 @@
 
 <script>
   function makeReq (){
-    const fullUrl = document.getElementById('input').value;
+    const fullUrl = document.getElementById('fullurl').value;
+    console.log(fullUrl)
 
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://api.shrtco.de/v2/shorten?url=`${fullurl}`', true)
+    xhr.open('GET', 'https://api.shrtco.de/v2/shorten?url='+fullUrl, true)
     xhr.send();
     xhr.onload = ()=>{
       const json = JSON.parse(xhr.responseText);
-      document.getElementById('hide').innerHTML = JSON.stringify(json)
+      console.log(json)
+      onclick= document.getElementById('hide').classList.remove('invisible');
+      //document.getElementById('hide').innerHTML = JSON.stringify(json)
     }
   }
 
