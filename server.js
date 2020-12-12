@@ -1,10 +1,10 @@
+//requiring dotenv
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const ShortUrls = require('./models/shortUrl');
 const app = express();
 
-//requiring dotenv
-require('dotenv').config();
 
 //Connection to DB
 mongoose.connect('mongodb://localhost/urlShortener',{
@@ -20,6 +20,10 @@ app.use(express.static('public'))
  
 //makes it possible to use url params
 app.use(express.urlencoded({ extended: false }))
+
+//parses incoming JSON payload
+app.use(express.json())
+
 
 //Home Route
 app.get('/',async (req, res)=>{
@@ -43,6 +47,13 @@ app.get("/:shortUrl",async (req, res) => {
 
     res.redirect(shortUrl.full)
 } )
+
+//API route
+app.get("/shorten",async (req, res)=>{
+    var url = req.params('url')
+    await ShortUrls.create({ full: url })
+    res.send(ShortUrls)
+})
 
 app.listen(process.env.PORT, ()=>{
     console.log("start")
