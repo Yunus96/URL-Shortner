@@ -31,6 +31,11 @@ app.get('/',async (req, res)=>{
     res.render('index2',{ shortUrls : shortUrls})
 })
 
+//API route
+app.get("/shorten",(req, res)=>{
+    res.send("hi there")
+})
+
 
 app.post('/shortUrls',async (req, res)=>{
     await ShortUrls.create({ full: req.body.fullUrl })
@@ -48,12 +53,6 @@ app.get("/:shortUrl",async (req, res) => {
     res.redirect(shortUrl.full)
 } )
 
-//API route
-app.get("/shorten",async (req, res)=>{
-    var url = req.params('url')
-    await ShortUrls.create({ full: url })
-    res.send(ShortUrls)
-})
 
 app.listen(process.env.PORT, ()=>{
     console.log("start")

@@ -99,7 +99,6 @@
     xhr.send();
     xhr.onload = ()=>{
       const json = JSON.parse(xhr.responseText);
-      console.log(json)
       onclick= document.getElementById('hide').classList.remove('invisible');
       //document.getElementById('hide').innerHTML = JSON.stringify(json)
     }
