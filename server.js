@@ -32,8 +32,11 @@ app.get('/',async (req, res)=>{
 })
 
 //API route
-app.get("/shorten",(req, res)=>{
-    res.send("hi there")
+app.get("/shorten",async (req, res)=>{
+    console.log(req.query.url)
+    await ShortUrls.create({ full : req.query.url })
+    const shortUrls = await ShortUrls.find({}).sort({_id:-1}).limit(1)
+    res.json(shortUrls)
 })
 
 
