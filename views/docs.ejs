@@ -53,33 +53,14 @@
       <h3 class="masthead-brand">Chota URL</h3>
       <nav class="nav nav-masthead justify-content-center">
         <a class="nav-link active" href="/">Home</a>
-        <a class="nav-link" href="/docs">API Docs</a>
+        <a class="nav-link" href="/views/docs.ejs">API Docs</a>
         <a class="nav-link" href="#">Contact</a>
       </nav>
     </div>
   </header>
 
   <main role="main" class="inner cover">
-    <h1 class="cover-heading">Shrink Your URL</h1>
-    <p class="lead">Chota URL is the industry-leading link management platform to brand, track and share short URLs using a custom domain name.</p>
-    
-    <!--This is Form-->
-    <div  class="my-4 form-inline">
-        <label for="fullUrl" class="sr-only">Url</label>
-        
-        <input class="form-control col-10 mr-2" required placeholder="Make your links shorter" type="url" id='fullurl' name="fullUrl">
-        
-        <button class="btn btn-success" style="width: 90px;" type="submit" id="getShort" onclick="makeReq()">Shrink</button>
-    <!--onclick="document.getElementById('hide').classList.remove('invisible')"-->
-    </div>
-
-
-    <div class="invisible alert col-12 alert-light" role="alert" style="padding: 5px 0 5px 0;" id='hide'>
-    
-      <a href="<%= shortUrls[0].short %>" id="urlInput" class="alert-link">https://ab.com/<%= shortUrls[0].short %></a>
-      <button type="button" class="btn btn-dark" style="display: inline;margin:0 0 0 20px;" id="copy" onclick='copyFunc()'> Copy </button>
-    
-    </div>
+   
   </main>
 
   <footer class="mastfoot mt-auto">

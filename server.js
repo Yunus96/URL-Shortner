@@ -31,14 +31,19 @@ app.get('/',async (req, res)=>{
     res.render('index2',{ shortUrls : shortUrls})
 })
 
+//Docs route
+app.get('/docs', (req, res) => {
+    res.render('docs')
+})
+
 //API route
 app.get("/shorten",async (req, res)=>{
     try{
         await ShortUrls.create({ full : req.query.url })
         const shortUrls = await ShortUrls.find({}).sort({_id:-1}).limit(1)
-        res.send(`https://ab.cd/`+shortUrls[0].short)
+        res.status(200).json(`https://ab.cd/`+shortUrls[0].short)
     } catch (err) {
-        res.send(err)
+        res.status(400).json(err)
     }
 })
 
