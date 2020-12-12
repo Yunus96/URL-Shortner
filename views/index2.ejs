@@ -92,7 +92,6 @@
 <script>
   function makeReq (){
     const fullUrl = document.getElementById('fullurl').value;
-    console.log(fullUrl)
 
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://api.shrtco.de/v2/shorten?url='+fullUrl, true)
